@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+  <title>Rock Paper Scissors</title>
+  
+</head>
+<body>
+  <h1>Rock Paper Scissors Game</h1>
+Rules:
+Rock beats Scissors, Paper beats Rock, Scissors beats Paper
+  
+  <p>Please click on rock, paper, or scissors:</p>
+
+
+
+
+    <img src="rock.jpg" alt="Rock" onclick="playGame('rock')">
+    <img src="paper.jpg" alt="Paper" onclick="playGame('paper')">
+    <img src="scissors.jpg" alt="Scissors" onclick="playGame('scissors')">
+
+  <div id="result">
+    <h2>Result</h2>
+    <p>User: <span id="user-score">0</span></p>
+    <p>Computer: <span id="computer-score">0</span></p>
+    <p>Ties: <span id="tie-score">0</span></p>
+    <p id="outcome"></p>
+  </div>
+
+  <script>
+    let userScore = 0;
+    let computerScore = 0;
+    let tieScore = 0;
+
+    function playGame(userChoice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+      document.getElementById('outcome').innerText = `User chose ${userChoice}, Computer chose ${computerChoice}`;
+
+      if (userChoice === computerChoice) {
+        tieScore++;
+        document.getElementById('outcome').innerText += ". It's a tie!";
+      } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+                 (userChoice === 'paper' && computerChoice === 'rock') ||
+                 (userChoice === 'scissors' && computerChoice === 'paper')) {
+        userScore++;
+        document.getElementById('outcome').innerText += ". You win!";
+      } else {
+        computerScore++;
+        document.getElementById('outcome').innerText += ". Computer wins!";
+      }
+
+      document.getElementById('user-score').innerText = userScore;
+      document.getElementById('computer-score').innerText = computerScore;
+      document.getElementById('tie-score').innerText = tieScore;
+    }
+  </script>
+</body>
+</html>
